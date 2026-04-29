@@ -342,7 +342,7 @@ export default function ThemeSelector({ currentTheme, onThemeChange }: ThemeSele
         <Button
           variant="outline"
           size="icon"
-          className={`relative border-2 border-slate-300 dark:border-slate-700 hover:border-transparent rounded-full transition-all duration-300 overflow-hidden group hover:scale-110 hover:shadow-lg cursor-pointer ${!open ? 'palette-pulse' : ''}`}
+          className="relative border-2 border-slate-300 dark:border-slate-700 hover:border-transparent rounded-full transition-all duration-300 overflow-hidden group hover:scale-110 hover:shadow-lg cursor-pointer"
           style={{
             background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`,
             boxShadow: open ? `0 0 20px color-mix(in srgb, var(--theme-primary) 50%, transparent)` : 'none'

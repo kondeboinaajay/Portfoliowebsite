@@ -305,20 +305,6 @@
     cursor: not-allowed;
   }
 
-  /* Palette button pulse animation */
-  @keyframes pulse-theme {
-    0%, 100% {
-      box-shadow: 0 0 0 0 color-mix(in srgb, var(--theme-primary) 40%, transparent);
-    }
-    50% {
-      box-shadow: 0 0 0 8px color-mix(in srgb, var(--theme-primary) 0%, transparent);
-    }
-  }
-
-  .palette-pulse {
-    animation: pulse-theme 2s ease-in-out infinite;
-  }
-
   /* Smooth zoom animation for checkmarks */
   @keyframes zoom-in {
     0% {

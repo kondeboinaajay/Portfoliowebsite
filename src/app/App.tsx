@@ -190,11 +190,56 @@ export default function App() {
             <span className="text-xl font-semibold bg-gradient-to-r bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary))` }}>Portfolio</span>
           </div>
           <div className="flex items-center gap-8">
-            <a href="#about" className="transition-colors hover:opacity-80" style={{ color: `var(--theme-muted)` }}>About</a>
-            <a href="#experience" className="transition-colors hover:opacity-80" style={{ color: `var(--theme-muted)` }}>Experience</a>
-            <a href="#projects" className="transition-colors hover:opacity-80" style={{ color: `var(--theme-muted)` }}>Projects</a>
-            <a href="#skills" className="transition-colors hover:opacity-80" style={{ color: `var(--theme-muted)` }}>Skills</a>
-            <a href="#contact" className="transition-colors hover:opacity-80" style={{ color: `var(--theme-muted)` }}>Contact</a>
+            <a
+              href="#about"
+              className="relative px-3 py-2 rounded-md transition-all duration-300 group overflow-hidden cursor-pointer"
+              style={{ color: `var(--theme-muted)` }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`
+              }}></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">About</span>
+            </a>
+            <a
+              href="#experience"
+              className="relative px-3 py-2 rounded-md transition-all duration-300 group overflow-hidden cursor-pointer"
+              style={{ color: `var(--theme-muted)` }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`
+              }}></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Experience</span>
+            </a>
+            <a
+              href="#projects"
+              className="relative px-3 py-2 rounded-md transition-all duration-300 group overflow-hidden cursor-pointer"
+              style={{ color: `var(--theme-muted)` }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`
+              }}></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Projects</span>
+            </a>
+            <a
+              href="#skills"
+              className="relative px-3 py-2 rounded-md transition-all duration-300 group overflow-hidden cursor-pointer"
+              style={{ color: `var(--theme-muted)` }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`
+              }}></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Skills</span>
+            </a>
+            <a
+              href="#contact"
+              className="relative px-3 py-2 rounded-md transition-all duration-300 group overflow-hidden cursor-pointer"
+              style={{ color: `var(--theme-muted)` }}
+            >
+              <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
+                background: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary))`
+              }}></span>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
+            </a>
             <ThemeSelector currentTheme={currentTheme} onThemeChange={handleThemeChange} />
           </div>
         </div>
@@ -222,14 +267,24 @@ export default function App() {
               delivering innovative solutions that drive business growth.
             </p>
             <div className="flex gap-4 flex-wrap">
-              <Button size="lg" className="gap-2 shadow-lg text-white hover:opacity-90 transition-opacity" style={{
-                background: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary))`,
-                boxShadow: `0 10px 25px color-mix(in srgb, var(--theme-primary) 25%, transparent)`
-              }}>
+              <Button
+                size="lg"
+                className="gap-2 shadow-lg text-white hover:opacity-90 transition-opacity"
+                style={{
+                  background: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary))`,
+                  boxShadow: `0 10px 25px color-mix(in srgb, var(--theme-primary) 25%, transparent)`
+                }}
+                onClick={() => window.location.href = 'mailto:kondeboinaajay873@gmail.com'}
+              >
                 <Mail className="h-4 w-4" />
                 Let's Connect
               </Button>
-              <Button size="lg" variant="outline" className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2"
+                onClick={() => window.open('https://github.com/kondeboinaajay', '_blank')}
+              >
                 <Github className="h-4 w-4" />
                 View Work
               </Button>
@@ -489,15 +544,29 @@ export default function App() {
             new opportunities and collaborations.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <Button size="lg" className="gap-2 shadow-lg text-white hover:opacity-90 transition-opacity theme-gradient-bg">
+            <Button
+              size="lg"
+              className="gap-2 shadow-lg text-white hover:opacity-90 transition-opacity theme-gradient-bg"
+              onClick={() => window.location.href = 'mailto:kondeboinaajay873@gmail.com'}
+            >
               <Mail className="h-5 w-5" />
               Email Me
             </Button>
-            <Button size="lg" variant="outline" className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border"
+              onClick={() => window.open('https://www.linkedin.com/in/kondeboinaajay', '_blank')}
+            >
               <Linkedin className="h-5 w-5" />
               LinkedIn
             </Button>
-            <Button size="lg" variant="outline" className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border"
+              onClick={() => window.open('https://github.com/kondeboinaajay', '_blank')}
+            >
               <Github className="h-5 w-5" />
               GitHub
             </Button>
