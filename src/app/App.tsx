@@ -269,24 +269,28 @@ export default function App() {
             <div className="flex gap-4 flex-wrap">
               <Button
                 size="lg"
+                asChild
                 className="gap-2 shadow-lg text-white hover:opacity-90 transition-opacity"
                 style={{
                   background: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary))`,
                   boxShadow: `0 10px 25px color-mix(in srgb, var(--theme-primary) 25%, transparent)`
                 }}
-                onClick={() => window.location.href = 'mailto:kondeboinaajay873@gmail.com'}
               >
-                <Mail className="h-4 w-4" />
-                Let's Connect
+                <a href="mailto:kondeboinaajay873@gmail.com">
+                  <Mail className="h-4 w-4" />
+                  Let's Connect
+                </a>
               </Button>
               <Button
                 size="lg"
+                asChild
                 variant="outline"
                 className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2"
-                onClick={() => window.open('https://github.com/kondeboinaajay', '_blank')}
               >
-                <Github className="h-4 w-4" />
-                View Work
+                <a href="https://github.com/kondeboinaajay" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                  View Work
+                </a>
               </Button>
             </div>
           </div>
@@ -546,29 +550,35 @@ export default function App() {
           <div className="flex justify-center gap-4 flex-wrap">
             <Button
               size="lg"
+              asChild
               className="gap-2 shadow-lg text-white hover:opacity-90 transition-opacity theme-gradient-bg"
-              onClick={() => window.location.href = 'mailto:kondeboinaajay873@gmail.com'}
             >
-              <Mail className="h-5 w-5" />
-              Email Me
+              <a href="mailto:kondeboinaajay873@gmail.com">
+                <Mail className="h-5 w-5" />
+                Email Me
+              </a>
             </Button>
             <Button
               size="lg"
+              asChild
               variant="outline"
               className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border"
-              onClick={() => window.open('https://www.linkedin.com/in/kondeboinaajay', '_blank')}
             >
-              <Linkedin className="h-5 w-5" />
-              LinkedIn
+              <a href="https://www.linkedin.com/in/kondeboinaajay" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="h-5 w-5" />
+                LinkedIn
+              </a>
             </Button>
             <Button
               size="lg"
+              asChild
               variant="outline"
               className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border"
-              onClick={() => window.open('https://github.com/kondeboinaajay', '_blank')}
             >
-              <Github className="h-5 w-5" />
-              GitHub
+              <a href="https://github.com/kondeboinaajay" target="_blank" rel="noopener noreferrer">
+                <Github className="h-5 w-5" />
+                GitHub
+              </a>
             </Button>
           </div>
         </div>
