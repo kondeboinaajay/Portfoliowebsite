@@ -520,7 +520,7 @@ export default function ThemeSelector({ currentTheme, onThemeChange }: ThemeSele
 
               <Button
                 onClick={handleSaveCustomGradient}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer mb-8"
               >
                 Save & Apply Custom Gradient
               </Button>

@@ -11,6 +11,7 @@ import AnimatedProjectSVG from "./components/AnimatedProjectSVG";
 import AnimatedSkillsSVG from "./components/AnimatedSkillsSVG";
 import ThemeSelector, { themes, Theme } from "./components/ThemeSelector";
 import { useTheme } from "./hooks/useTheme";
+import dharaniLogo from "../imports/image.png";
 
 // Helper function to generate theme from gradient (must match ThemeSelector)
 const generateThemeFromGradient = (startColor: string, endColor: string): Theme => {
@@ -111,7 +112,7 @@ export default function App() {
       company: "Feuji",
       role: "Software Developer",
       duration: "Present",
-      period: "2024 - Present",
+      period: "Feb 2026 - Present",
       location: "Current Position",
       description: "Leading development initiatives and architecting scalable solutions for enterprise clients.",
       achievements: [
@@ -120,14 +121,21 @@ export default function App() {
         "Mentoring junior developers and conducting code reviews",
         "Driving technical innovation and best practices"
       ],
-      skills: ["React", "Node.js", "AWS", "TypeScript", "Microservices"],
-      theme: "from-indigo-600 via-purple-600 to-pink-600"
+      skills: [
+        { name: "React", icon: "⚛️" },
+        { name: "Node.js", icon: "🟢" },
+        { name: "AWS", icon: "☁️" },
+        { name: "TypeScript", icon: "📘" },
+        { name: "Microservices", icon: "🔧" }
+      ],
+      theme: "from-indigo-600 via-purple-600 to-pink-600",
+      logo: null as string | null
     },
     {
       company: "Dharani Info Technologies",
       role: "Full Stack Developer",
       duration: "2.1 Years",
-      period: "2022 - 2024",
+      period: "Nov 2023 - Nov 2025",
       location: "Professional Growth",
       description: "Developed and delivered innovative web solutions, contributing to multiple client projects and internal tools.",
       achievements: [
@@ -136,8 +144,15 @@ export default function App() {
         "Led a team of 3 developers on critical projects",
         "Implemented CI/CD pipelines improving deployment efficiency by 60%"
       ],
-      skills: ["JavaScript", "React", "Python", "MongoDB", "Docker"],
-      theme: "from-emerald-600 via-teal-600 to-cyan-600"
+      skills: [
+        { name: "JavaScript", icon: "⚡" },
+        { name: "React", icon: "⚛️" },
+        { name: "Python", icon: "🐍" },
+        { name: "MongoDB", icon: "🍃" },
+        { name: "Docker", icon: "🐳" }
+      ],
+      theme: "from-emerald-600 via-teal-600 to-cyan-600",
+      logo: dharaniLogo
     }
   ];
 
@@ -146,31 +161,75 @@ export default function App() {
       title: "Enterprise Dashboard",
       description: "Real-time analytics platform with advanced data visualization and reporting capabilities.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      tags: ["React", "D3.js", "Node.js", "PostgreSQL"],
+      tags: [
+        { name: "React", icon: "⚛️" },
+        { name: "D3.js", icon: "📊" },
+        { name: "Node.js", icon: "🟢" },
+        { name: "PostgreSQL", icon: "🐘" }
+      ],
       gradient: "from-violet-500 to-purple-500"
     },
     {
       title: "E-Commerce Platform",
       description: "Full-featured shopping experience with payment integration and inventory management.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      tags: ["Next.js", "Stripe", "MongoDB", "Tailwind"],
+      tags: [
+        { name: "Next.js", icon: "▲" },
+        { name: "Stripe", icon: "💳" },
+        { name: "MongoDB", icon: "🍃" },
+        { name: "Tailwind", icon: "🎨" }
+      ],
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       title: "Project Management Tool",
       description: "Collaborative workspace with real-time updates and team coordination features.",
       image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80",
-      tags: ["TypeScript", "WebSocket", "Redis", "Docker"],
+      tags: [
+        { name: "TypeScript", icon: "📘" },
+        { name: "WebSocket", icon: "🔌" },
+        { name: "Redis", icon: "🔴" },
+        { name: "Docker", icon: "🐳" }
+      ],
       gradient: "from-emerald-500 to-teal-500"
     }
   ];
 
   const skills = {
-    "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"],
-    "Backend": ["Node.js", "Python", "Express", "FastAPI", "GraphQL"],
-    "Database": ["PostgreSQL", "MongoDB", "Redis", "MySQL"],
-    "DevOps": ["Docker", "AWS", "CI/CD", "Kubernetes", "Git"],
-    "Tools": ["Figma", "VS Code", "Postman", "Jira", "Slack"]
+    "Frontend": [
+      { name: "React", icon: "⚛️" },
+      { name: "Next.js", icon: "▲" },
+      { name: "TypeScript", icon: "📘" },
+      { name: "Tailwind CSS", icon: "🎨" },
+      { name: "Redux", icon: "🔄" }
+    ],
+    "Backend": [
+      { name: "Node.js", icon: "🟢" },
+      { name: "Python", icon: "🐍" },
+      { name: "Express", icon: "🚂" },
+      { name: "FastAPI", icon: "⚡" },
+      { name: "GraphQL", icon: "◉" }
+    ],
+    "Database": [
+      { name: "PostgreSQL", icon: "🐘" },
+      { name: "MongoDB", icon: "🍃" },
+      { name: "Redis", icon: "🔴" },
+      { name: "MySQL", icon: "🐬" }
+    ],
+    "DevOps": [
+      { name: "Docker", icon: "🐳" },
+      { name: "AWS", icon: "☁️" },
+      { name: "CI/CD", icon: "🔄" },
+      { name: "Kubernetes", icon: "☸️" },
+      { name: "Git", icon: "📦" }
+    ],
+    "Tools": [
+      { name: "Figma", icon: "🎨" },
+      { name: "VS Code", icon: "💻" },
+      { name: "Postman", icon: "📮" },
+      { name: "Jira", icon: "📊" },
+      { name: "Slack", icon: "💬" }
+    ]
   };
 
   return (
@@ -256,10 +315,14 @@ export default function App() {
               <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-sm" style={{ color: `var(--theme-primary)` }}>Available for opportunities</span>
             </div>
-            <h1 className="text-6xl md:text-8xl mb-6 bg-gradient-to-r bg-clip-text text-transparent" style={{
-              backgroundImage: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary), var(--theme-accent))`
-            }}>
-              Crafting Digital Excellence
+            <h1 className="text-6xl md:text-8xl mb-6">
+              <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{
+                backgroundImage: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary), var(--theme-accent))`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>
+                Crafting Digital Excellence
+              </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 leading-relaxed" style={{ color: `var(--theme-muted)` }}>
               Full Stack Developer with 2+ years of experience building scalable web applications.
@@ -384,6 +447,19 @@ export default function App() {
                   <div className="relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-900/80 dark:to-slate-800/50 rounded-2xl p-8 border border-slate-300 dark:border-slate-700/50 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10">
                     <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${exp.theme} rounded-t-2xl`}></div>
 
+                    {/* Company Logo - Top Right */}
+                    {exp.logo && (
+                      <div className="absolute top-6 right-6">
+                        <div className="w-20 h-20 rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:scale-110 transition-transform duration-300 bg-white dark:bg-slate-800">
+                          <ImageWithFallback
+                            src={exp.logo}
+                            alt={`${exp.company} logo`}
+                            className="w-full h-full object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                    )}
+
                     <div className="grid lg:grid-cols-3 gap-8">
                       <div className="lg:col-span-1">
                         <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${exp.theme} bg-clip-text text-transparent mb-4`}>
@@ -407,31 +483,45 @@ export default function App() {
                           </div>
                         </div>
 
-                        <div className="flex flex-wrap gap-2 mt-6">
+                        <div className="flex flex-wrap gap-3 mt-6">
                           {exp.skills.map((skill, i) => (
-                            <Badge key={i} className="theme-badge transition-all duration-300">
-                              {skill}
-                            </Badge>
+                            <div
+                              key={i}
+                              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-current transition-all duration-300 group/skill"
+                              style={{ borderColor: 'color-mix(in srgb, var(--theme-primary) 30%, transparent)' }}
+                            >
+                              <span className="text-xl group-hover/skill:scale-125 transition-transform duration-300">
+                                {skill.icon}
+                              </span>
+                              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                                {skill.name}
+                              </span>
+                            </div>
                           ))}
                         </div>
                       </div>
 
                       <div className="lg:col-span-2">
-                        <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed text-lg">
-                          {exp.description}
-                        </p>
+                        <div className="flex gap-6">
+                          <div className="flex-1">
+                            <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed text-lg">
+                              {exp.description}
+                            </p>
 
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-2 mb-4 theme-text-primary">
-                            <Sparkles className="h-5 w-5" />
-                            <span>Key Achievements</span>
-                          </div>
-                          {exp.achievements.map((achievement, i) => (
-                            <div key={i} className="flex items-start gap-3 group/item">
-                              <div className="mt-1.5 w-1.5 h-1.5 rounded-full theme-gradient-bg group-hover/item:scale-150 transition-transform"></div>
-                              <p className="text-slate-600 dark:text-slate-400 group-hover/item:text-slate-900 dark:group-hover/item:text-slate-300 transition-colors">{achievement}</p>
+                            <div className="space-y-3">
+                              <div className="flex items-center gap-2 mb-4 theme-text-primary">
+                                <Sparkles className="h-5 w-5" />
+                                <span>Key Achievements</span>
+                              </div>
+                              {exp.achievements.map((achievement, i) => (
+                                <div key={i} className="flex items-start gap-3 group/item">
+                                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full theme-gradient-bg group-hover/item:scale-150 transition-transform"></div>
+                                  <p className="text-slate-600 dark:text-slate-400 group-hover/item:text-slate-900 dark:group-hover/item:text-slate-300 transition-colors">{achievement}</p>
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                          </div>
+
                         </div>
                       </div>
                     </div>
@@ -481,9 +571,14 @@ export default function App() {
                     </p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tags.map((tag, i) => (
-                        <Badge key={i} className="theme-badge transition-all duration-300">
-                          {tag}
-                        </Badge>
+                        <div
+                          key={i}
+                          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-all duration-300"
+                          style={{ borderColor: 'color-mix(in srgb, var(--theme-primary) 20%, transparent)' }}
+                        >
+                          <span className="text-base">{tag.icon}</span>
+                          <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{tag.name}</span>
+                        </div>
                       ))}
                     </div>
                     <Button variant="outline" className="w-full border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border transition-all duration-300">
@@ -512,28 +607,48 @@ export default function App() {
             <AnimatedSkillsSVG />
           </div>
 
-          <Slider {...{...carouselSettings, slidesToShow: 3, slidesToScroll: 1, responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 2 } },
-            { breakpoint: 640, settings: { slidesToShow: 1 } }
-          ]}}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(skills).map(([category, items], index) => (
-              <div key={index} className="px-4">
-                <div className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900/80 dark:to-slate-800/50 rounded-2xl p-8 border border-slate-300 dark:border-slate-700/50 theme-hover-border transition-all duration-300 h-full min-h-[280px]">
-                  <div className="flex items-center gap-2 mb-6">
-                    <Code className="h-5 w-5 theme-text-primary" />
-                    <h3 className="text-xl text-slate-900 dark:text-white">{category}</h3>
+              <div
+                key={index}
+                className="bg-gradient-to-br from-white to-slate-50 dark:from-slate-900/80 dark:to-slate-800/50 rounded-2xl p-6 border-2 border-slate-200 dark:border-slate-700/50 hover:border-transparent transition-all duration-300 h-full shadow-lg hover:shadow-2xl group"
+                style={{
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                  borderImage: `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary)) 1`,
+                  borderImageSlice: 0
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderImage = `linear-gradient(135deg, var(--theme-primary), var(--theme-secondary)) 1`;
+                  e.currentTarget.style.borderImageSlice = '1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderImageSlice = '0';
+                }}
+              >
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-700">
+                  <div className="p-3 rounded-xl theme-gradient-bg">
+                    <Code className="h-5 w-5 text-white" />
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {items.map((skill, i) => (
-                      <Badge key={i} className="theme-badge transition-all duration-300">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 dark:text-white">{category}</h3>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {items.map((skill, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 p-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:scale-105 hover:shadow-md transition-all duration-300 cursor-pointer group/item"
+                    >
+                      <span className="text-2xl group-hover/item:scale-125 transition-transform duration-300">
+                        {skill.icon}
+                      </span>
+                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                        {skill.name}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
-          </Slider>
+          </div>
         </div>
       </section>
 
@@ -564,7 +679,7 @@ export default function App() {
               variant="outline"
               className="border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 gap-2 theme-hover-border"
             >
-              <a href="https://www.linkedin.com/in/kondeboinaajay" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/ajaykondeboina" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-5 w-5" />
                 LinkedIn
               </a>
