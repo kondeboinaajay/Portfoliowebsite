@@ -237,11 +237,23 @@
 
   @media (max-width: 768px) {
     .slick-prev {
-      left: -25px;
+      left: 10px;
+      z-index: 20;
     }
     .slick-next {
-      right: -25px;
+      right: 10px;
+      z-index: 20;
     }
+  }
+
+  /* Ensure carousel images maintain aspect ratio */
+  .slick-slide img {
+    display: block;
+    width: 100%;
+  }
+
+  .slick-dots {
+    bottom: 15px;
   }
 
   /* Theme-aware classes */
@@ -268,6 +280,7 @@
   .theme-gradient-text {
     background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
   }
@@ -322,5 +335,52 @@
 
   .animate-in.zoom-in {
     animation: zoom-in 0.3s ease-out;
+  }
+
+  /* Enhanced carousel styles for smooth experience */
+  .slick-slider {
+    position: relative;
+    user-select: none;
+    touch-action: pan-y;
+  }
+
+  .slick-list {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .slick-track {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .slick-slide {
+    height: inherit;
+  }
+
+  .slick-slide > div {
+    height: 100%;
+  }
+
+  /* Responsive image handling */
+  @media (max-width: 1024px) {
+    .slick-prev {
+      left: -30px;
+    }
+    .slick-next {
+      right: -30px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .slick-prev {
+      left: 10px;
+      z-index: 20;
+    }
+    .slick-next {
+      right: 10px;
+      z-index: 20;
+    }
   }
 }

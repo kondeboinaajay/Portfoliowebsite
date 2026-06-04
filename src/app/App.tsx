@@ -12,6 +12,9 @@ import AnimatedSkillsSVG from "./components/AnimatedSkillsSVG";
 import ThemeSelector, { themes, Theme } from "./components/ThemeSelector";
 import { useTheme } from "./hooks/useTheme";
 import dharaniLogo from "../imports/image.png";
+import dharaniHero from "../imports/image-1.png";
+import feujiOffice1 from "../imports/image-2.png";
+import feujiOffice2 from "../imports/image-3.png";
 
 // Helper function to generate theme from gradient (must match ThemeSelector)
 const generateThemeFromGradient = (startColor: string, endColor: string): Theme => {
@@ -102,9 +105,26 @@ export default function App() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
+    autoplay: false, // Disabled auto-scroll
+    arrows: true,
     pauseOnHover: true
+  };
+
+  const imageCarouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 800,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    pauseOnFocus: true,
+    swipeToSlide: true,
+    draggable: true,
+    arrows: true,
+    adaptiveHeight: false,
+    fade: false
   };
 
   const experiences = [
@@ -129,7 +149,9 @@ export default function App() {
         { name: "Microservices", icon: "🔧" }
       ],
       theme: "from-indigo-600 via-purple-600 to-pink-600",
-      logo: null as string | null
+      logo: null as string | null,
+      heroImage: null,
+      officeImages: [feujiOffice1, feujiOffice2]
     },
     {
       company: "Dharani Info Technologies",
@@ -152,7 +174,9 @@ export default function App() {
         { name: "Docker", icon: "🐳" }
       ],
       theme: "from-emerald-600 via-teal-600 to-cyan-600",
-      logo: dharaniLogo
+      logo: dharaniLogo,
+      heroImage: dharaniHero,
+      officeImages: null
     }
   ];
 
@@ -315,14 +339,10 @@ export default function App() {
               <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full animate-pulse"></div>
               <span className="text-sm" style={{ color: `var(--theme-primary)` }}>Available for opportunities</span>
             </div>
-            <h1 className="text-6xl md:text-8xl mb-6">
-              <span className="bg-gradient-to-r bg-clip-text text-transparent" style={{
-                backgroundImage: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary), var(--theme-accent))`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}>
-                Crafting Digital Excellence
-              </span>
+            <h1 className="text-6xl md:text-8xl mb-6 font-bold bg-gradient-to-r bg-clip-text text-transparent" style={{
+              backgroundImage: `linear-gradient(to right, var(--theme-primary), var(--theme-secondary))`
+            }}>
+              Crafting Digital Excellence
             </h1>
             <p className="text-xl md:text-2xl mb-8 leading-relaxed" style={{ color: `var(--theme-muted)` }}>
               Full Stack Developer with 2+ years of experience building scalable web applications.
@@ -440,17 +460,18 @@ export default function App() {
             <AnimatedExperienceSVG />
           </div>
 
-          <Slider {...carouselSettings}>
-            {experiences.map((exp, index) => (
-              <div key={index} className="px-4">
+          <div className="relative max-w-7xl mx-auto">
+            <Slider {...carouselSettings}>
+              {experiences.map((exp, index) => (
+                <div key={index} className="px-6 pb-8">
                 <div className="group">
-                  <div className="relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-900/80 dark:to-slate-800/50 rounded-2xl p-8 border border-slate-300 dark:border-slate-700/50 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10">
+                  <div className="relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-900/80 dark:to-slate-800/50 rounded-3xl p-6 md:p-8 lg:p-10 border-2 border-slate-300 dark:border-slate-700/50 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10">
                     <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${exp.theme} rounded-t-2xl`}></div>
 
                     {/* Company Logo - Top Right */}
                     {exp.logo && (
-                      <div className="absolute top-6 right-6">
-                        <div className="w-20 h-20 rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:scale-110 transition-transform duration-300 bg-white dark:bg-slate-800">
+                      <div className="absolute top-4 right-4 md:top-6 md:right-6 z-10">
+                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:scale-110 transition-transform duration-300 bg-white dark:bg-slate-800">
                           <ImageWithFallback
                             src={exp.logo}
                             alt={`${exp.company} logo`}
@@ -460,69 +481,95 @@ export default function App() {
                       </div>
                     )}
 
-                    <div className="grid lg:grid-cols-3 gap-8">
-                      <div className="lg:col-span-1">
-                        <div className={`inline-flex items-center gap-2 bg-gradient-to-r ${exp.theme} bg-clip-text text-transparent mb-4`}>
-                          <Briefcase className="h-5 w-5" />
-                          <span className="text-2xl">{exp.company}</span>
-                        </div>
-                        <h3 className="text-xl text-slate-900 dark:text-white mb-4">{exp.role}</h3>
+                    {/* Bootstrap-Style Responsive Layout */}
+                    <div className="grid lg:grid-cols-2 gap-8 items-start">
+                      {/* Left Side - Content */}
+                      <div className="flex flex-col justify-between order-2 lg:order-1">
+                        <div>
+                          <div className="inline-flex items-center gap-2 mb-4">
+                            <Briefcase className="h-6 w-6" style={{ color: 'var(--theme-primary)' }} />
+                            <span className={`text-3xl font-bold bg-gradient-to-r ${exp.theme} bg-clip-text text-transparent`}>{exp.company}</span>
+                          </div>
+                          <h3 className="text-2xl text-slate-900 dark:text-white mb-6 font-semibold">{exp.role}</h3>
 
-                        <div className="space-y-3 text-slate-600 dark:text-slate-400">
-                          <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                            <span>{exp.period}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Award className="h-4 w-4 text-pink-600 dark:text-pink-400" />
-                            <span>{exp.duration}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
-                            <span>{exp.location}</span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-3 mt-6">
-                          {exp.skills.map((skill, i) => (
-                            <div
-                              key={i}
-                              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-current transition-all duration-300 group/skill"
-                              style={{ borderColor: 'color-mix(in srgb, var(--theme-primary) 30%, transparent)' }}
-                            >
-                              <span className="text-xl group-hover/skill:scale-125 transition-transform duration-300">
-                                {skill.icon}
-                              </span>
-                              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                                {skill.name}
-                              </span>
+                          <div className="flex flex-wrap gap-4 mb-6">
+                            <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                              <Calendar className="h-5 w-5 theme-text-primary" />
+                              <span className="text-sm font-medium">{exp.period}</span>
                             </div>
-                          ))}
+                            <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                              <Award className="h-5 w-5 theme-text-secondary" />
+                              <span className="text-sm font-medium">{exp.duration}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+                              <MapPin className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />
+                              <span className="text-sm font-medium">{exp.location}</span>
+                            </div>
+                          </div>
+
+                          <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed text-base">
+                            {exp.description}
+                          </p>
+
+                          <div className="space-y-2 mb-6">
+                            <div className="flex items-center gap-2 mb-3 theme-text-primary">
+                              <Sparkles className="h-5 w-5" />
+                              <span className="font-semibold">Key Achievements</span>
+                            </div>
+                            {exp.achievements.map((achievement, i) => (
+                              <div key={i} className="flex items-start gap-3 group/item">
+                                <div className="mt-1.5 w-2 h-2 rounded-full theme-gradient-bg group-hover/item:scale-150 transition-transform flex-shrink-0"></div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 group-hover/item:text-slate-900 dark:group-hover/item:text-slate-300 transition-colors">{achievement}</p>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="flex flex-wrap gap-2">
+                            {exp.skills.map((skill, i) => (
+                              <div
+                                key={i}
+                                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-all duration-300 group/skill"
+                                style={{ borderColor: 'color-mix(in srgb, var(--theme-primary) 25%, transparent)' }}
+                              >
+                                <span className="text-base group-hover/skill:scale-125 transition-transform duration-300">
+                                  {skill.icon}
+                                </span>
+                                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                                  {skill.name}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
-                      <div className="lg:col-span-2">
-                        <div className="flex gap-6">
-                          <div className="flex-1">
-                            <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed text-lg">
-                              {exp.description}
-                            </p>
-
-                            <div className="space-y-3">
-                              <div className="flex items-center gap-2 mb-4 theme-text-primary">
-                                <Sparkles className="h-5 w-5" />
-                                <span>Key Achievements</span>
-                              </div>
-                              {exp.achievements.map((achievement, i) => (
-                                <div key={i} className="flex items-start gap-3 group/item">
-                                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full theme-gradient-bg group-hover/item:scale-150 transition-transform"></div>
-                                  <p className="text-slate-600 dark:text-slate-400 group-hover/item:text-slate-900 dark:group-hover/item:text-slate-300 transition-colors">{achievement}</p>
+                      {/* Right Side - Hero Image or Image Carousel */}
+                      <div className="flex items-start justify-center lg:justify-end order-1 lg:order-2">
+                        {exp.officeImages && exp.officeImages.length > 0 ? (
+                          <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
+                            <Slider {...imageCarouselSettings}>
+                              {exp.officeImages.map((img, idx) => (
+                                <div key={idx} className="w-full">
+                                  <ImageWithFallback
+                                    src={img}
+                                    alt={`${exp.company} office ${idx + 1}`}
+                                    className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
+                                  />
                                 </div>
                               ))}
+                            </Slider>
+                          </div>
+                        ) : exp.heroImage ? (
+                          <div className="w-full">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 border-4 border-white dark:border-slate-700">
+                              <ImageWithFallback
+                                src={exp.heroImage}
+                                alt={`${exp.company} showcase`}
+                                className="w-full h-auto object-contain bg-white dark:bg-slate-800"
+                              />
                             </div>
                           </div>
-
-                        </div>
+                        ) : null}
                       </div>
                     </div>
                   </div>
@@ -530,6 +577,7 @@ export default function App() {
               </div>
             ))}
           </Slider>
+        </div>
         </div>
       </section>
 
