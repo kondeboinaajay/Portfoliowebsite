@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import { Card, CardContent } from "./components/ui/card";
 import { Button } from "./components/ui/button";
@@ -11,8 +11,8 @@ import AnimatedProjectSVG from "./components/AnimatedProjectSVG";
 import AnimatedSkillsSVG from "./components/AnimatedSkillsSVG";
 import ThemeSelector, { themes, Theme } from "./components/ThemeSelector";
 import { useTheme } from "./hooks/useTheme";
-import dharaniLogo from "../imports/image.png";
-import dharaniHero from "../imports/image-1.png";
+import { ImageCarousel } from "./components/ImageCarousel";
+import dharaniHero from "../imports/image-12.png";
 import feujiOffice1 from "../imports/image-2.png";
 import feujiOffice2 from "../imports/image-3.png";
 
@@ -57,6 +57,7 @@ const generateThemeFromGradient = (startColor: string, endColor: string): Theme 
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<Theme>(themes[1]); // Default to dark theme
+  const expSliderRef = useRef<Slider | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -174,7 +175,7 @@ export default function App() {
         { name: "Docker", icon: "🐳" }
       ],
       theme: "from-emerald-600 via-teal-600 to-cyan-600",
-      logo: dharaniLogo,
+      logo: null as string | null,
       heroImage: dharaniHero,
       officeImages: null
     }
@@ -460,8 +461,16 @@ export default function App() {
             <AnimatedExperienceSVG />
           </div>
 
-          <div className="relative max-w-7xl mx-auto">
-            <Slider {...carouselSettings}>
+          <div
+            className="relative max-w-7xl mx-auto"
+            onWheel={(e) => {
+              if (Math.abs(e.deltaX) > 30) {
+                if (e.deltaX > 0) expSliderRef.current?.slickNext();
+                else expSliderRef.current?.slickPrev();
+              }
+            }}
+          >
+            <Slider {...carouselSettings} ref={expSliderRef}>
               {experiences.map((exp, index) => (
                 <div key={index} className="px-6 pb-8">
                 <div className="group">
@@ -546,28 +555,16 @@ export default function App() {
                       {/* Right Side - Hero Image or Image Carousel */}
                       <div className="flex items-start justify-center lg:justify-end order-1 lg:order-2">
                         {exp.officeImages && exp.officeImages.length > 0 ? (
-                          <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
-                            <Slider {...imageCarouselSettings}>
-                              {exp.officeImages.map((img, idx) => (
-                                <div key={idx} className="w-full">
-                                  <ImageWithFallback
-                                    src={img}
-                                    alt={`${exp.company} office ${idx + 1}`}
-                                    className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover"
-                                  />
-                                </div>
-                              ))}
-                            </Slider>
+                          <div className="w-full">
+                            <ImageCarousel images={exp.officeImages} alt={`${exp.company} office`} autoScrollInterval={3500} />
                           </div>
                         ) : exp.heroImage ? (
-                          <div className="w-full">
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 border-4 border-white dark:border-slate-700">
-                              <ImageWithFallback
-                                src={exp.heroImage}
-                                alt={`${exp.company} showcase`}
-                                className="w-full h-auto object-contain bg-white dark:bg-slate-800"
-                              />
-                            </div>
+                          <div className="w-full rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700" style={{ height: '14rem' }}>
+                            <ImageWithFallback
+                              src={exp.heroImage}
+                              alt={`${exp.company} showcase`}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                         ) : null}
                       </div>
